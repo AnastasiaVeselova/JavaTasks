@@ -29,4 +29,17 @@ public class Square implements IShape {
     public double getPerimeter() {
         return 4 * side;
     }
+
+    @Override
+    public String toString() {
+        String lineSeparator = System.lineSeparator();
+        String formattedNumber = "%." + 2 + "f";
+
+        return String.format("Квадрат:" + lineSeparator +
+                        "Ширина: " + formattedNumber + " мм" + lineSeparator +
+                        "Длина: " + formattedNumber + " мм" + lineSeparator +
+                        "Площадь: " + formattedNumber + " кв. мм" + lineSeparator +
+                        "Периметр: " + formattedNumber + " мм" + lineSeparator,
+                getWidth(), getHeight(), getArea(), getPerimeter());
+    }
 }

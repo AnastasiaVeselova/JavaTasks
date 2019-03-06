@@ -29,4 +29,17 @@ public class Circle implements IShape{
     public double getPerimeter() {
         return 2 * Math.PI * radius;
     }
+
+    @Override
+    public String toString() {
+        String lineSeparator = System.lineSeparator();
+        String formattedNumber = "%." + 2 + "f";
+
+        return String.format("Окружность:" + lineSeparator +
+                        "Ширина: " + formattedNumber + " мм" + lineSeparator +
+                        "Длина: " + formattedNumber + " мм" + lineSeparator +
+                        "Площадь: " + formattedNumber + " кв. мм" + lineSeparator +
+                        "Периметр: " + formattedNumber + " мм" + lineSeparator,
+                getWidth(), getHeight(), getArea(), getPerimeter());
+    }
 }

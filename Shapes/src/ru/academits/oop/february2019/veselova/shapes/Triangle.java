@@ -44,4 +44,17 @@ public class Triangle implements IShape {
 
         return aSide + bSide + cSide;
     }
+
+    @Override
+    public String toString() {
+        String lineSeparator = System.lineSeparator();
+        String formattedNumber = "%." + 2 + "f";
+
+        return String.format("Треугольник:" + lineSeparator +
+                        "Ширина: " + formattedNumber + " мм" + lineSeparator +
+                        "Длина: " + formattedNumber + " мм" + lineSeparator +
+                        "Площадь: " + formattedNumber + " кв. мм" + lineSeparator +
+                        "Периметр: " + formattedNumber + " мм" + lineSeparator,
+                getWidth(), getHeight(), getArea(), getPerimeter());
+    }
 }

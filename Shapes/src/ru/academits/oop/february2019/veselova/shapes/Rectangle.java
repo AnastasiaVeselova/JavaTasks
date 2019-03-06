@@ -34,15 +34,17 @@ public class Rectangle implements IShape {
         return 2 * (height + width);
     }
 
-   /* @Override
+    @Override
     public String toString() {
         String lineSeparator = System.lineSeparator();
-        String formattedNumber = FormattedOutputRules.formRealNumberOutputString();
-        return String.format(super.toString() +
-                        "Длина (размер длинной стороны): " + formattedNumber + " мм" + lineSeparator +
-                        "Ширина (размер короткой стороны): " + formattedNumber + " мм" + lineSeparator +
-                        "Длина диагонали: " + formattedNumber + " мм",
-                getHeight(), getWidth(), computeDiagonal());
-    }*/
+        String formattedNumber = "%." + 2 + "f";
+
+        return String.format("Прямоугольник:" + lineSeparator +
+                        "Ширина: " + formattedNumber + " мм" + lineSeparator +
+                        "Длина: " + formattedNumber + " мм" + lineSeparator +
+                        "Площадь: " + formattedNumber + " кв. мм" + lineSeparator +
+                        "Периметр: " + formattedNumber + " мм" + lineSeparator,
+                getWidth(), getHeight(), getArea(), getPerimeter());
+    }
 
 }
