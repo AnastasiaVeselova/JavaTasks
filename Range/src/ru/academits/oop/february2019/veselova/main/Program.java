@@ -1,4 +1,4 @@
-package ru.academits.oop.february2019.veselova.program;
+package ru.academits.oop.february2019.veselova.main;
 
 import ru.academits.oop.february2019.veselova.range.Range;
 

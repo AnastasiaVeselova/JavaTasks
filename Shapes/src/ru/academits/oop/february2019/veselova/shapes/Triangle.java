@@ -46,15 +46,38 @@ public class Triangle implements IShape {
     }
 
     @Override
+    public int hashCode() {
+        final int prime = 37;
+        int hash = 1;
+        hash = prime * hash + Double.hashCode(x1);
+        hash = prime * hash + Double.hashCode(y1);
+
+        hash = prime * hash + Double.hashCode(x2);
+        hash = prime * hash + Double.hashCode(y2);
+
+        hash = prime * hash + Double.hashCode(x3);
+        hash = prime * hash + Double.hashCode(y3);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) return true;
+        if (o == null || o.getClass() != this.getClass()) return false;
+        Triangle t = (Triangle) o;
+        return x1 == t.x1 && y1 == t.y1 && x2 == t.x2 && y2 == t.y2 && x3 == t.x3 && y3 == t.y3;
+    }
+
+    @Override
     public String toString() {
         String lineSeparator = System.lineSeparator();
         String formattedNumber = "%." + 2 + "f";
 
-        return String.format("Треугольник:" + lineSeparator +
-                        "Ширина: " + formattedNumber + " мм" + lineSeparator +
-                        "Длина: " + formattedNumber + " мм" + lineSeparator +
-                        "Площадь: " + formattedNumber + " кв. мм" + lineSeparator +
-                        "Периметр: " + formattedNumber + " мм" + lineSeparator,
+        return String.format("Triangle:" + lineSeparator +
+                        "Width: " + formattedNumber + " mm" + lineSeparator +
+                        "Height: " + formattedNumber + " mm" + lineSeparator +
+                        "Area: " + formattedNumber + " sq. mm" + lineSeparator +
+                        "Perimeter: " + formattedNumber + " mm" + lineSeparator,
                 getWidth(), getHeight(), getArea(), getPerimeter());
     }
 }

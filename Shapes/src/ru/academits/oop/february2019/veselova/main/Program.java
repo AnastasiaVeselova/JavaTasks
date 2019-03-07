@@ -1,4 +1,4 @@
-package ru.academits.oop.february2019.veselova;
+package ru.academits.oop.february2019.veselova.main;
 
 import ru.academits.oop.february2019.veselova.shapes.*;
 
@@ -26,7 +26,7 @@ public class Program {
 
         Arrays.sort(shapesInDescendingOfArea, new Comparator<IShape>() {
             public int compare(IShape a, IShape b) {
-                return a.getArea() > b.getArea() ? -1 : a.getArea() == b.getArea() ? 0 : 1;
+                return Double.compare(-a.getArea(), -b.getArea());
             }
         });
 
@@ -34,12 +34,12 @@ public class Program {
 
         Arrays.sort(shapesInDescendingOfPerimeter, new Comparator<IShape>() {
             public int compare(IShape a, IShape b) {
-                return a.getPerimeter() > b.getPerimeter() ? -1 : a.getPerimeter() == b.getPerimeter() ? 0 : 1;
+                return Double.compare(-a.getPerimeter(), -b.getPerimeter()) ;
             }
         });
 
-        System.out.println("Фигура с наибольшей площадью:" + System.lineSeparator() + shapesInDescendingOfArea[0].toString());
+        System.out.println("Shape with the largest area:" + System.lineSeparator() + shapesInDescendingOfArea[0].toString());
 
-        System.out.println("Фигура со вторым по величине периметром:" + System.lineSeparator() + shapesInDescendingOfPerimeter[1].toString());
+        System.out.println("Shape with the second largest perimeter:" + System.lineSeparator() + shapesInDescendingOfPerimeter[1].toString());
     }
 }

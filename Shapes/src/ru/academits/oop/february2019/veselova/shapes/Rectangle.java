@@ -1,8 +1,6 @@
 package ru.academits.oop.february2019.veselova.shapes;
 
 public class Rectangle implements IShape {
-    private final String name = "Прямоугольник";
-
     private double height;
     private double width;
 
@@ -35,16 +33,32 @@ public class Rectangle implements IShape {
     }
 
     @Override
+    public int hashCode() {
+        final int prime = 37;
+        int hash = 1;
+        hash = prime * hash + Double.hashCode(width);
+        hash = prime * hash + Double.hashCode(height);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) return true;
+        if (o == null || o.getClass() != this.getClass()) return false;
+        Rectangle r = (Rectangle) o;
+        return width == r.width && height == r.height;
+    }
+
+    @Override
     public String toString() {
         String lineSeparator = System.lineSeparator();
         String formattedNumber = "%." + 2 + "f";
 
-        return String.format("Прямоугольник:" + lineSeparator +
-                        "Ширина: " + formattedNumber + " мм" + lineSeparator +
-                        "Длина: " + formattedNumber + " мм" + lineSeparator +
-                        "Площадь: " + formattedNumber + " кв. мм" + lineSeparator +
-                        "Периметр: " + formattedNumber + " мм" + lineSeparator,
+        return String.format("Rectangle:" + lineSeparator +
+                        "Width: " + formattedNumber + " mm" + lineSeparator +
+                        "Height: " + formattedNumber + " mm" + lineSeparator +
+                        "Area: " + formattedNumber + " sq. mm" + lineSeparator +
+                        "Perimeter: " + formattedNumber + " mm" + lineSeparator,
                 getWidth(), getHeight(), getArea(), getPerimeter());
     }
-
 }

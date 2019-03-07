@@ -5,8 +5,8 @@ public class Square implements IShape {
     private double side;
 
     public Square(double side) {
-        if (side<0)
-            throw new IllegalArgumentException ("Incorrect figure parameters. A square cannot have negative side lengths.");
+        if (side < 0)
+            throw new IllegalArgumentException("Incorrect figure parameters. A square cannot have negative side lengths.");
         this.side = side;
     }
 
@@ -31,15 +31,28 @@ public class Square implements IShape {
     }
 
     @Override
+    public int hashCode() {
+        return Double.hashCode(side);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) return true;
+        if (o == null || o.getClass() != this.getClass()) return false;
+        Square s = (Square) o;
+        return side == s.side;
+    }
+
+    @Override
     public String toString() {
         String lineSeparator = System.lineSeparator();
         String formattedNumber = "%." + 2 + "f";
 
-        return String.format("Квадрат:" + lineSeparator +
-                        "Ширина: " + formattedNumber + " мм" + lineSeparator +
-                        "Длина: " + formattedNumber + " мм" + lineSeparator +
-                        "Площадь: " + formattedNumber + " кв. мм" + lineSeparator +
-                        "Периметр: " + formattedNumber + " мм" + lineSeparator,
+        return String.format("Square:" + lineSeparator +
+                        "Width: " + formattedNumber + " mm" + lineSeparator +
+                        "Height: " + formattedNumber + " mm" + lineSeparator +
+                        "Area: " + formattedNumber + " sq. mm" + lineSeparator +
+                        "Perimeter: " + formattedNumber + " mm" + lineSeparator,
                 getWidth(), getHeight(), getArea(), getPerimeter());
     }
 }

@@ -61,6 +61,7 @@ public class Range {
         return from < other.to && to > other.from;
     }
 
+    @Override
     public String toString() {
         return "(" + from + ", " + to + ")";
     }
