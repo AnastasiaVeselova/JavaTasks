@@ -30,7 +30,7 @@ public class Range {
     }
 
     public Range[] getUnion(Range other) {
-        if (isIntersected(other)) {
+        if (isIntersectedWithRangesEnds(other)) {
             return new Range[]{new Range(Math.min(from, other.from), Math.max(to, other.to))};
         }
 
@@ -57,7 +57,11 @@ public class Range {
         return new Range[]{new Range(this)};
     }
 
-    public boolean isIntersected(Range other) {
+    private boolean isIntersected(Range other) {
+        return from < other.to && to > other.from;
+    }
+
+    private boolean isIntersectedWithRangesEnds(Range other) {
         return from <= other.to && to >= other.from;
     }
 
