@@ -58,7 +58,7 @@ public class Range {
     }
 
     public boolean isIntersected(Range other) {
-        return from < other.to && to > other.from;
+        return from <= other.to && to >= other.from;
     }
 
     @Override
