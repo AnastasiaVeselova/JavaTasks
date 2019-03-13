@@ -21,7 +21,7 @@ public class Range {
         return (from <= value && value <= to);
     }
 
-    public Range computeIntersection(Range other) {
+    public Range getIntersection(Range other) {
         if (isIntersected(other)) {
             return new Range(Math.max(from, other.from), Math.min(to, other.to));
         }
@@ -29,7 +29,7 @@ public class Range {
         return null;
     }
 
-    public Range[] computeUnion(Range other) {
+    public Range[] getUnion(Range other) {
         if (isIntersected(other)) {
             return new Range[]{new Range(Math.min(from, other.from), Math.max(to, other.to))};
         }
@@ -37,7 +37,7 @@ public class Range {
         return new Range[]{new Range(this), new Range(other)};
     }
 
-    public Range[] computeComplement(Range other) {
+    public Range[] getComplement(Range other) {
         if (isIntersected(other)) {
             if (from < other.from) {
                 if (to > other.to) {
@@ -72,5 +72,13 @@ public class Range {
 
     public double getTo() {
         return to;
+    }
+
+    public void setFrom(double from) {
+        this.from = from;
+    }
+
+    public void setTo(double to) {
+        this.to = to;
     }
 }

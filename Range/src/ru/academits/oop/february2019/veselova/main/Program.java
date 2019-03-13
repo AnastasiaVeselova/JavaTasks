@@ -17,35 +17,41 @@ public class Program {
         Range h = new Range(16, 20);
         Range i = new Range(12, 14);
 
-        Range intersectionAB = a.computeIntersection(b);
+        Range j = new Range(20, 30);
+
+        Range intersectionAB = a.getIntersection(b);
         print("intersection", a, b, intersectionAB);
-        Range intersectionAC = a.computeIntersection(c);
+        Range intersectionAC = a.getIntersection(c);
         print("intersection", a, c, intersectionAC);
-        Range intersectionAF = a.computeIntersection(f);
+        Range intersectionAF = a.getIntersection(f);
         print("intersection", a, f, intersectionAF);
+        Range intersectionAJ = a.getIntersection(j);
+        print("intersection", a, j, intersectionAJ);
 
-        Range[] unionAB = a.computeUnion(b);
+        Range[] unionAB = a.getUnion(b);
         print("union", a, b, unionAB);
-        Range[] unionAC = a.computeUnion(c);
+        Range[] unionAC = a.getUnion(c);
         print("union", a, c, unionAC);
-        Range[] unionAF = a.computeUnion(f);
+        Range[] unionAF = a.getUnion(f);
         print("union", a, f, unionAF);
+        Range[] unionAJ = a.getUnion(j);
+        print("union", a, j, unionAJ);
 
-        Range[] complementAB = a.computeComplement(b);
+        Range[] complementAB = a.getComplement(b);
         print("complement", a, b, complementAB);
-        Range[] complementAC = a.computeComplement(c);
+        Range[] complementAC = a.getComplement(c);
         print("complement", a, c, complementAC);
-        Range[] complementAD = a.computeComplement(d);
+        Range[] complementAD = a.getComplement(d);
         print("complement", a, d, complementAD);
-        Range[] complementAE = a.computeComplement(e);
+        Range[] complementAE = a.getComplement(e);
         print("complement", a, e, complementAE);
-        Range[] complementAF = a.computeComplement(f);
+        Range[] complementAF = a.getComplement(f);
         print("complement", a, f, complementAF);
-        Range[] complementAG = a.computeComplement(g);
+        Range[] complementAG = a.getComplement(g);
         print("complement", a, g, complementAG);
-        Range[] complementAH = a.computeComplement(h);
+        Range[] complementAH = a.getComplement(h);
         print("complement", a, h, complementAH);
-        Range[] complementAI = a.computeComplement(i);
+        Range[] complementAI = a.getComplement(i);
         print("complement", a, i, complementAI);
     }
 
@@ -54,8 +60,7 @@ public class Program {
         if (result.length == 0) {
             System.out.print("null");
         } else {
-            for (Range el : result
-            ) {
+            for (Range el : result) {
                 System.out.printf("%s\t", el);
             }
         }
