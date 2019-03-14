@@ -27,7 +27,7 @@ public class Program {
         System.out.printf("%s\n\n", v2);
 
         System.out.printf("- %s = ", v3);
-        v3.revertVector();
+        v3.revert();
         System.out.printf("%s\n\n", v3);
 
         v4.setComponentByIndex(0, 0);
