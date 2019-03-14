@@ -1,6 +1,6 @@
 package ru.academits.oop.february2019.veselova.shapes;
 
-public class Rectangle implements IShape {
+public class Rectangle implements Shape {
     private double height;
     private double width;
 
@@ -43,8 +43,12 @@ public class Rectangle implements IShape {
 
     @Override
     public boolean equals(Object o) {
-        if (o == this) return true;
-        if (o == null || o.getClass() != this.getClass()) return false;
+        if (o == this) {
+            return true;
+        }
+        if (o == null || o.getClass() != this.getClass()) {
+            return false;
+        }
         Rectangle r = (Rectangle) o;
         return width == r.width && height == r.height;
     }
@@ -52,13 +56,13 @@ public class Rectangle implements IShape {
     @Override
     public String toString() {
         String lineSeparator = System.lineSeparator();
-        String formattedNumber = "%." + 2 + "f";
+        String formattedNumber = "%.2f";
 
         return String.format("Rectangle:" + lineSeparator +
                         "Width: " + formattedNumber + " mm" + lineSeparator +
                         "Height: " + formattedNumber + " mm" + lineSeparator +
                         "Area: " + formattedNumber + " sq. mm" + lineSeparator +
                         "Perimeter: " + formattedNumber + " mm" + lineSeparator,
-                getWidth(), getHeight(), getArea(), getPerimeter());
+                width, height, getArea(), getPerimeter());
     }
 }

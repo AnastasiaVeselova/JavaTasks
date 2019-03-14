@@ -1,6 +1,6 @@
 package ru.academits.oop.february2019.veselova.shapes;
 
-public class Circle implements IShape {
+public class Circle implements Shape {
     private double radius;
 
     public Circle(double radius) {
@@ -37,8 +37,12 @@ public class Circle implements IShape {
 
     @Override
     public boolean equals(Object o) {
-        if (o == this) return true;
-        if (o == null || o.getClass() != this.getClass()) return false;
+        if (o == this) {
+            return true;
+        }
+        if (o == null || o.getClass() != this.getClass()) {
+            return false;
+        }
         Circle c = (Circle) o;
         return radius == c.radius;
     }
@@ -46,13 +50,12 @@ public class Circle implements IShape {
     @Override
     public String toString() {
         String lineSeparator = System.lineSeparator();
-        String formattedNumber = "%." + 2 + "f";
+        String formattedNumber = "%.2f";
 
         return String.format("Circle:" + lineSeparator +
-                        "Width: " + formattedNumber + " mm" + lineSeparator +
-                        "Height: " + formattedNumber + " mm" + lineSeparator +
+                        "Radius: " + formattedNumber + " mm" + lineSeparator +
                         "Area: " + formattedNumber + " sq. mm" + lineSeparator +
                         "Perimeter: " + formattedNumber + " mm" + lineSeparator,
-                getWidth(), getHeight(), getArea(), getPerimeter());
+                radius, getArea(), getPerimeter());
     }
 }

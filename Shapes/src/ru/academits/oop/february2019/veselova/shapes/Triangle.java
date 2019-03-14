@@ -1,6 +1,6 @@
 package ru.academits.oop.february2019.veselova.shapes;
 
-public class Triangle implements IShape {
+public class Triangle implements Shape {
     private double x1;
     private double y1;
 
@@ -38,11 +38,15 @@ public class Triangle implements IShape {
 
     @Override
     public double getPerimeter() {
-        double aSide = Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
-        double bSide = Math.sqrt((x3 - x2) * (x3 - x2) + (y3 - y2) * (y3 - y2));
-        double cSide = Math.sqrt((x1 - x3) * (x1 - x3) + (y1 - y3) * (y1 - y3));
+        double aSide = calculateSegmentLength(x1, y1, x2, y2);
+        double bSide = calculateSegmentLength(x2, y2, x3, y3);
+        double cSide = calculateSegmentLength(x1, y1, x3, y3);
 
         return aSide + bSide + cSide;
+    }
+
+    private double calculateSegmentLength(double x1, double y1, double x2, double y2) {
+        return Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
     }
 
     @Override
@@ -62,8 +66,12 @@ public class Triangle implements IShape {
 
     @Override
     public boolean equals(Object o) {
-        if (o == this) return true;
-        if (o == null || o.getClass() != this.getClass()) return false;
+        if (o == this) {
+            return true;
+        }
+        if (o == null || o.getClass() != this.getClass()) {
+            return false;
+        }
         Triangle t = (Triangle) o;
         return x1 == t.x1 && y1 == t.y1 && x2 == t.x2 && y2 == t.y2 && x3 == t.x3 && y3 == t.y3;
     }
@@ -71,13 +79,12 @@ public class Triangle implements IShape {
     @Override
     public String toString() {
         String lineSeparator = System.lineSeparator();
-        String formattedNumber = "%." + 2 + "f";
+        String formattedNumber = "%.2f";
 
         return String.format("Triangle:" + lineSeparator +
-                        "Width: " + formattedNumber + " mm" + lineSeparator +
-                        "Height: " + formattedNumber + " mm" + lineSeparator +
+                        "Vertex coordinates: (%.2f, %.2f); (%.2f, %.2f); (%.2f, %.2f)" + lineSeparator +
                         "Area: " + formattedNumber + " sq. mm" + lineSeparator +
                         "Perimeter: " + formattedNumber + " mm" + lineSeparator,
-                getWidth(), getHeight(), getArea(), getPerimeter());
+                x1, y1, x2, y2, x3, y3, getArea(), getPerimeter());
     }
 }

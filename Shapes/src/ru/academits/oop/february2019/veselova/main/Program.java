@@ -1,5 +1,7 @@
 package ru.academits.oop.february2019.veselova.main;
 
+import ru.academits.oop.february2019.veselova.comparators.ShapeAreaComparator;
+import ru.academits.oop.february2019.veselova.comparators.ShapePerimeterComparator;
 import ru.academits.oop.february2019.veselova.shapes.*;
 
 import java.util.Arrays;
@@ -7,7 +9,7 @@ import java.util.Comparator;
 
 public class Program {
     public static void main(String[] args) {
-        IShape[] shapes = {
+        Shape[] shapes = {
                 new Rectangle(5, 10),
                 new Square(20.5),
                 new Square(15),
@@ -22,21 +24,13 @@ public class Program {
                 new Circle(4.66)
         };
 
-        IShape[] shapesInDescendingOfArea = shapes.clone();
+        Shape[] shapesInDescendingOfArea = shapes.clone();
 
-        Arrays.sort(shapesInDescendingOfArea, new Comparator<IShape>() {
-            public int compare(IShape a, IShape b) {
-                return Double.compare(-a.getArea(), -b.getArea());
-            }
-        });
+        Arrays.sort(shapesInDescendingOfArea, new ShapeAreaComparator());
 
-        IShape[] shapesInDescendingOfPerimeter = shapes.clone();
+        Shape[] shapesInDescendingOfPerimeter = shapes.clone();
 
-        Arrays.sort(shapesInDescendingOfPerimeter, new Comparator<IShape>() {
-            public int compare(IShape a, IShape b) {
-                return Double.compare(-a.getPerimeter(), -b.getPerimeter()) ;
-            }
-        });
+        Arrays.sort(shapesInDescendingOfPerimeter, new ShapePerimeterComparator());
 
         System.out.println("Shape with the largest area:" + System.lineSeparator() + shapesInDescendingOfArea[0].toString());
 

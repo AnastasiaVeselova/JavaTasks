@@ -1,6 +1,6 @@
 package ru.academits.oop.february2019.veselova.shapes;
 
-public interface IShape {
+public interface Shape {
     double getWidth();
 
     double getHeight();
