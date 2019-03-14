@@ -1,5 +1,7 @@
 package ru.academits.oop.february2019.veselova.vector;
 
+import java.util.Arrays;
+
 public class Vector {
     private double[] vector;
 
@@ -14,24 +16,15 @@ public class Vector {
         if (other == null) {
             throw new NullPointerException("Vector is null");
         }
-
-        vector = new double[other.getSize()];
-        for (int i = 0; i < getSize(); i++) {
-            vector[i] = other.vector[i];
-        }
+        vector = other.vector.clone();
     }
 
     public Vector(double[] array) {
         if (array == null) {
             throw new NullPointerException("Array is null");
         }
-
-        vector = new double[array.length];
-        for (int i = 0; i < getSize(); i++) {
-            vector[i] = array[i];
-        }
+        vector = array.clone();
     }
-
 
     public Vector(int n, double[] array) {
         if (n < 0) {
@@ -40,13 +33,7 @@ public class Vector {
         if (array == null) {
             throw new NullPointerException("Array is null");
         }
-
-        vector = new double[n];
-
-        int m = Math.min(n, array.length);
-        for (int i = 0; i < m; i++) {
-            vector[i] = array[i];
-        }
+        vector = Arrays.copyOf(array, n);
     }
 
     public int getSize() {
@@ -67,17 +54,23 @@ public class Vector {
     }
 
     public void addVector(Vector other) {
-        int m = Math.min(getSize(), other.getSize());
+        int n = other.getSize();
+        if (getSize() < n) {
+            vector = Arrays.copyOf(vector, n);
+        }
 
-        for (int i = 0; i < m; i++) {
+        for (int i = 0; i < n; i++) {
             vector[i] += other.vector[i];
         }
     }
 
     public void subtractVector(Vector other) {
-        int m = Math.min(getSize(), other.getSize());
+        int n = other.getSize();
+        if (getSize() < n) {
+            vector = Arrays.copyOf(vector, n);
+        }
 
-        for (int i = 0; i < m; i++) {
+        for (int i = 0; i < n; i++) {
             vector[i] -= other.vector[i];
         }
     }
@@ -108,10 +101,16 @@ public class Vector {
 
     @Override
     public boolean equals(Object o) {
-        if (o == this) return true;
-        if (o == null || o.getClass() != this.getClass()) return false;
+        if (o == this) {
+            return true;
+        }
+        if (o == null || o.getClass() != this.getClass()) {
+            return false;
+        }
         Vector other = (Vector) o;
-        if (getSize() != other.getSize()) return false;
+        if (getSize() != other.getSize()) {
+            return false;
+        }
 
         for (int i = 0; i < getSize(); i++) {
             if (vector[i] != other.vector[i]) {
@@ -131,29 +130,14 @@ public class Vector {
     }
 
     public static Vector add(Vector first, Vector second) {
-        Vector result;
-        if (first.getSize() >= second.getSize()) {
-            result = new Vector(first);
-            result.addVector(second);
-        } else {
-            result = new Vector(second);
-            result.addVector(first);
-        }
-
+        Vector result = new Vector(first);
+        result.addVector(second);
         return result;
     }
 
-    //TODO сделать адекватно работающее вычитание static и nonstatic
     public static Vector subtract(Vector first, Vector second) {
-
-        Vector result;
-        if (first.getSize() >= second.getSize()) {
-            result = new Vector(first);
-            result.subtractVector(second);
-        } else {
-            result = new Vector(second);
-            result.subtractVector(first);
-        }
+        Vector result = new Vector(first);
+        result.subtractVector(second);
         return result;
     }
 
