@@ -1,6 +1,5 @@
 package ru.academits.oop.february2019.veselova.list;
 
-
 import java.util.Objects;
 
 public class SinglyLinkedList<T> {
