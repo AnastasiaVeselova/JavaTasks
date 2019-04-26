@@ -1,5 +1,6 @@
 package ru.academits.oop.february2019.veselova.list;
 
+import java.util.NoSuchElementException;
 import java.util.Objects;
 
 public class SinglyLinkedList<T> {
@@ -12,7 +13,7 @@ public class SinglyLinkedList<T> {
 
     public T getFirstItem() {
         if (isEmpty()) {
-            throw new IndexOutOfBoundsException("The list is empty.");
+            throw new NoSuchElementException("List is empty.");
         }
         return head.getData();
     }
@@ -76,12 +77,9 @@ public class SinglyLinkedList<T> {
     }
 
     public boolean removeByValue(T value) {
-        if (isEmpty()) {
-            throw new IndexOutOfBoundsException("The list is empty.");
-        }
-
         if (Objects.equals(head.getData(), value)) {
             removeFirstItem();
+            return true;
         }
         ListItem<T> item = head;
 
@@ -98,7 +96,7 @@ public class SinglyLinkedList<T> {
 
     public T removeFirstItem() {
         if (isEmpty()) {
-            throw new IndexOutOfBoundsException("The list is empty.");
+            throw new NoSuchElementException("List is empty.");
         }
 
         T firstValue = head.getData();
@@ -108,6 +106,10 @@ public class SinglyLinkedList<T> {
     }
 
     public void reverse() {
+        if (head == null) {
+            return;
+        }
+
         ListItem<T> item = head;
         ListItem<T> nextItem = head.getNext();
 
