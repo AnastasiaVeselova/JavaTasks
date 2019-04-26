@@ -97,7 +97,7 @@ public class ArrayList<T> implements List<T> {
         System.arraycopy(items, index, items, index + c.size(), length - index);
         int i = index;
         for (T item : c) {
-            set(i, item);
+            items[i] = item;
             i++;
         }
         modCount += c.size();
@@ -119,7 +119,7 @@ public class ArrayList<T> implements List<T> {
         int initialModCount = modCount;
         int i = 0;
         while (i < length) {
-            if (!c.contains(get(i))) {
+            if (!c.contains(items[i])) {
                 remove(i);
             } else {
                 i++;
@@ -165,7 +165,7 @@ public class ArrayList<T> implements List<T> {
         if (index < length - 1) {
             System.arraycopy(items, index, items, index + 1, length - index);
         }
-        set(index, element);
+        items[index] = element;
         length++;
         modCount++;
     }
@@ -175,7 +175,7 @@ public class ArrayList<T> implements List<T> {
         if (index < 0 || index >= length) {
             throw new IndexOutOfBoundsException("Index out of array bounds.");
         }
-        T deletedItem = get(index);
+        T deletedItem = items[index];
 
         if (index < length - 1) {
             System.arraycopy(items, index + 1, items, index, length - index - 1);
@@ -267,7 +267,7 @@ public class ArrayList<T> implements List<T> {
 
         result.append("{ ");
         for (int i = 0; i < length; i++) {
-            result.append(get(i));
+            result.append(items[i]);
             result.append(delimiter);
         }
         result.setLength(result.length() - delimiter.length());
