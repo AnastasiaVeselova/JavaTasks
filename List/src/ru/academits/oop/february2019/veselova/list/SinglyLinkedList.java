@@ -77,6 +77,10 @@ public class SinglyLinkedList<T> {
     }
 
     public boolean removeByValue(T value) {
+        if (isEmpty()) {
+            throw new NoSuchElementException("List is empty.");
+        }
+
         if (Objects.equals(head.getData(), value)) {
             removeFirstItem();
             return true;
