@@ -8,6 +8,7 @@ public class ArrayList<T> implements List<T> {
 
     private int modCount = 0;
 
+    @SuppressWarnings("unchecked")
     public ArrayList(int capacity) {
         if (capacity <= 0) {
             throw new IllegalArgumentException("Capacity is less than or equal to zero.");
@@ -42,6 +43,7 @@ public class ArrayList<T> implements List<T> {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public <T1> T1[] toArray(T1[] a) {
         if (a.length < length) {
             return (T1[]) Arrays.copyOf(items, length, a.getClass());
@@ -100,7 +102,7 @@ public class ArrayList<T> implements List<T> {
             items[i] = item;
             i++;
         }
-        modCount += c.size();
+        modCount++;
         length += c.size();
         return true;
     }
@@ -108,9 +110,16 @@ public class ArrayList<T> implements List<T> {
     @Override
     public boolean removeAll(Collection<?> c) {
         int initialModCount = modCount;
-        for (Object item : c) {
-            remove(item);
+
+        int i = 0;
+        while (i < length) {
+            if (c.contains(items[i])) {
+                remove(i);
+            } else {
+                i++;
+            }
         }
+
         return modCount != initialModCount;
     }
 
@@ -130,13 +139,17 @@ public class ArrayList<T> implements List<T> {
 
     @Override
     public void clear() {
+        for (int i = 0; i < length; i++) {
+            items[i] = null;
+        }
+
         length = 0;
         modCount++;
     }
 
     @Override
     public T get(int index) {
-        if (index < 0 || index > length) {
+        if (index < 0 || index >= length) {
             throw new IndexOutOfBoundsException("Index out of array bounds.");
         }
         return items[index];
@@ -144,7 +157,7 @@ public class ArrayList<T> implements List<T> {
 
     @Override
     public T set(int index, T element) {
-        if (index < 0 || index > length) {
+        if (index < 0 || index >= length) {
             throw new IndexOutOfBoundsException("Index out of array bounds.");
         }
 
