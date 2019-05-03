@@ -16,7 +16,7 @@ public class Program {
         //А)
         System.out.println("А)");
         List<String> uniquePeopleNames = people.stream()
-                .map(p -> p.getName())
+                .map(Person::getName)
                 .distinct()
                 .collect(Collectors.toList());
 
@@ -25,18 +25,16 @@ public class Program {
 
         //<Б)
         System.out.println("Б)");
-        System.out.println("Имена: "
-                + uniquePeopleNames
+        System.out.println(uniquePeopleNames
                 .stream()
-                .collect(Collectors.joining(", ")));
-        System.out.println();
+                .collect(Collectors.joining(", ", "Имена: ", ".")));
 
         //В)
         System.out.println("В)");
         double averageAge = people
                 .stream()
                 .filter(p -> p.getAge() < 18)
-                .mapToInt(p -> p.getAge())
+                .mapToInt(Person::getAge)
                 .average()
                 .orElse(0);
 
@@ -47,7 +45,7 @@ public class Program {
         System.out.println("Г)");
         Map<String, Double> peopleMap = people
                 .stream()
-                .collect(Collectors.groupingBy(p -> p.getName(), Collectors.averagingDouble(Person::getAge)));
+                .collect(Collectors.groupingBy(Person::getName, Collectors.averagingDouble(Person::getAge)));
 
         peopleMap.forEach((name, ages) -> System.out.printf("%s: %.2f%n", name, ages));
         System.out.println();
@@ -58,13 +56,13 @@ public class Program {
                 .stream()
                 .filter(p -> p.getAge() >= 20 && p.getAge() <= 45)
                 .sorted((p1, p2) -> p2.getAge() - p1.getAge())
-                .map(p -> p.getName())
+                .map(Person::getName)
                 .collect(Collectors.joining(", "));
         System.out.println(peopleWithAgeBetween20And45);
     }
 
 
-    public static List<Person> createPersonList() {
+    private static List<Person> createPersonList() {
         ArrayList<Person> people = new ArrayList<>();
 
         people.add(new Person("Nastya", 10));
